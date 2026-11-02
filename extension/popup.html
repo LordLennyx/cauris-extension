@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Cauris</title>
+<style>
+:root{--vert:#163a2c;--creme:#f4e7c5;--or:#d6a531;--fond:#fbf8f0;--mute:#6f6a5c;--line:#e8e1cf}
+*{box-sizing:border-box;margin:0}
+body{width:340px;background:var(--fond);color:var(--vert);font:400 13.5px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:var(--vert);color:var(--creme);padding:16px 18px;display:flex;align-items:center;gap:10px}
+header svg{width:30px;height:30px;flex:none}
+header b{font-size:17px;letter-spacing:-.02em;display:block}header small{opacity:.7;font-size:12px}
+.sw{margin-left:auto;appearance:none;width:42px;height:24px;border-radius:20px;background:#ffffff33;position:relative;cursor:pointer;transition:.2s}
+.sw::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+.sw:checked{background:var(--or)}.sw:checked::after{left:21px}
+main{padding:16px 18px;display:grid;gap:14px}
+.conv{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.conv .row{display:flex;gap:8px;align-items:center}
+.conv input{flex:1;min-width:0;border:0;font:600 24px system-ui;color:var(--vert);background:none;outline:none;letter-spacing:-.02em}
+.conv select{border:1px solid var(--line);border-radius:8px;background:var(--fond);font:600 13px system-ui;padding:6px;color:var(--vert)}
+.conv .res{font:700 26px system-ui;letter-spacing:-.03em;margin-top:6px;padding-top:8px;border-top:1px dashed var(--line)}
+.conv .res small{font-size:13px;font-weight:500;color:var(--mute)}
+h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:6px}
+.rates{display:grid;gap:6px}
+.rate{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rate input{width:90px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;text-align:right;font:600 13px system-ui;color:var(--vert);background:#fff}
+.rate .lock{font-size:12px;color:var(--mute)}
+.seg{display:flex;background:#efe8d6;border-radius:10px;padding:3px}
+.seg button{flex:1;border:0;background:none;border-radius:8px;padding:6px;font:600 12.5px system-ui;color:var(--mute);cursor:pointer}
+.seg button.on{background:#fff;color:var(--vert);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.site{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:12px;font-size:12.5px}
+.site button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 9px;font:600 12px system-ui;color:var(--vert);cursor:pointer}
+.cnt{background:var(--creme);border-radius:10px;padding:8px 10px;font-size:12.5px}
+</style>
+</head>
+<body>
+<header><svg viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="11" ry="14" fill="#f4e7c5"/><path d="M16 5c-2 4-2 18 0 22" stroke="#163a2c" stroke-width="2" fill="none"/><path d="M14 10h-2M14 14h-2.5M14 18h-2.5M14 22h-2M18 10h2M18 14h2.5M18 18h2.5M18 22h2" stroke="#163a2c" stroke-width="1.4" stroke-linecap="round"/></svg><div><b>Cauris</b><small>Les prix du monde, en FCFA</small></div><input type="checkbox" class="sw" id="actif" aria-label="Activer Cauris" checked></header>
+<main>
+  <div class="cnt" id="cnt">Analyse de la page…</div>
+  <div class="conv"><div class="row"><input id="mt" inputmode="decimal" value="49,90" aria-label="Montant"><select id="dv" aria-label="Devise"><option value="eur">EUR</option><option value="usd">USD</option><option value="gbp">GBP</option></select></div><div class="res" id="res"></div></div>
+  <div><h3>Taux appliqués</h3><div class="rates">
+    <div class="rate"><span>1 € <span class="lock">· parité fixe</span></span><b>655,957 F</b></div>
+    <div class="rate"><label for="usd">1 $ US</label><input id="usd" inputmode="decimal"></div>
+    <div class="rate"><label for="gbp">1 £</label><input id="gbp" inputmode="decimal"></div>
+  </div></div>
+  <div><h3>Affichage</h3><div class="seg" id="style"><button data-v="pastille">Pastille</button><button data-v="discret">Discret</button><button data-v="souligne">Souligné</button></div></div>
+  <div><h3>Arrondi</h3><div class="seg" id="arrondi"><button data-v="1">1 F</button><button data-v="50">50 F</button><button data-v="100">100 F</button><button data-v="1000">1 000 F</button></div></div>
+  <div class="site"><span id="host">Ce site</span><button id="excl">Désactiver ici</button></div>
+</main>
+<script src="popup.js"></script>
+</body>
+</html>

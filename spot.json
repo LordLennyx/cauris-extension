@@ -1,0 +1,75 @@
+{
+ "titre": "<em>Cauris</em>, extension Chrome",
+ "type": "Extension de navigateur",
+ "sous_titre": "Les prix en euros, dollars et livres, convertis en FCFA sur chaque page",
+ "couleur": "#163a2c",
+ "graine": 16,
+ "voix": [
+  [
+   3.3,
+   "Cauris, une extension Chrome pour les acheteurs en ligne,"
+  ],
+  [
+   8.0,
+   "chaque prix en euros, dollars ou livres affiche son équivalent en francs CFA,"
+  ],
+  [
+   16.0,
+   "taux, style et arrondi se règlent d'un clic, sans compte et sans serveur."
+  ]
+ ],
+ "etapes": [
+  {
+   "t": "wait",
+   "ms": 500
+  },
+  {
+   "t": "scroll",
+   "y": 470,
+   "ms": 1200,
+   "pause": 1600
+  },
+  {
+   "t": "click",
+   "sel": "#icon",
+   "pause": 1300
+  },
+  {
+   "t": "eval",
+   "js": "document.querySelector('#pop').contentDocument.querySelector('#style button[data-v=souligne]').click()",
+   "pause": 1300
+  },
+  {
+   "t": "eval",
+   "js": "document.querySelector('#pop').contentDocument.querySelector('#arrondi button[data-v=\"1000\"]').click()",
+   "pause": 1300
+  },
+  {
+   "t": "eval",
+   "js": "document.querySelector('#pop').contentDocument.querySelector('#style button[data-v=pastille]').click()",
+   "pause": 900
+  },
+  {
+   "t": "eval",
+   "js": "const i=document.querySelector('#pop').contentDocument.querySelector('#mt');i.value='250';i.dispatchEvent(new Event('input'))",
+   "pause": 1300
+  },
+  {
+   "t": "click",
+   "sel": ".shop header",
+   "pause": 800
+  },
+  {
+   "t": "scroll",
+   "y": 1500,
+   "ms": 1300,
+   "pause": 1500
+  },
+  {
+   "t": "scroll",
+   "y": 2050,
+   "ms": 1100,
+   "pause": 1500
+  }
+ ]
+}

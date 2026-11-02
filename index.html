@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cauris — Extension Chrome, prix en FCFA</title>
+<meta name="description" content="Extension Chrome qui affiche l'équivalent en francs CFA à côté des prix en euros, dollars et livres, sur tous les sites. Démo en direct et code source.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="extension/icones/32.png">
+<link rel="stylesheet" href="extension/cauris.css">
+<style>
+:root{--vert:#163a2c;--creme:#f4e7c5;--or:#d6a531;--fond:#fbf8f0;--mute:#6f6a5c;--line:#e8e1cf}
+*{box-sizing:border-box;margin:0}
+body{background:var(--fond);color:var(--vert);font:400 16px/1.55 'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Bricolage Grotesque';letter-spacing:-.035em;font-weight:700}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1240px;margin:auto;padding:0 26px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+nav .lg{display:flex;align-items:center;gap:10px;font:700 21px 'Bricolage Grotesque';letter-spacing:-.04em}
+nav .lg img{width:30px;height:30px}
+.hero{text-align:center;padding:40px 0 40px}
+.hero h1{font-size:clamp(42px,6vw,84px);line-height:.98;max-width:13ch;margin:auto}
+.hero h1 em{font-style:normal;background:var(--creme);padding:0 .12em;border-radius:.15em}
+.hero p{font-size:19px;color:#4c5a50;max-width:36em;margin:22px auto 0}
+.cta{display:flex;gap:10px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+.b{height:48px;padding:0 20px;border-radius:14px;border:1px solid var(--line);background:#fff;font-weight:600;display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:inherit}
+.b.p{background:var(--vert);color:var(--creme);border-color:var(--vert)}
+/* navigateur simulé */
+.browser{margin:40px auto 0;max-width:1100px;background:#fff;border-radius:18px;box-shadow:0 50px 90px -40px rgba(22,58,44,.45),0 0 0 1px var(--line);overflow:visible;position:relative}
+.chrome{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#f1ede2;border-radius:18px 18px 0 0;border-bottom:1px solid var(--line)}
+.dots{display:flex;gap:7px}.dots i{width:12px;height:12px;border-radius:50%;background:#d8d1bf}
+.url{flex:1;background:#fff;border-radius:100px;padding:7px 14px;font-size:13.5px;color:var(--mute);display:flex;gap:8px;align-items:center}
+.ext{display:flex;gap:6px;align-items:center}
+.ext button{width:34px;height:34px;border-radius:9px;border:0;background:none;display:grid;place-items:center;position:relative}
+.ext button:hover,.ext button.on{background:#e4dece}
+.ext img{width:20px;height:20px}
+.ext .badge{position:absolute;right:1px;bottom:1px;background:var(--or);color:var(--vert);font:700 9.5px system-ui;border-radius:5px;padding:1px 3px}
+.pop{position:absolute;right:12px;top:58px;width:340px;height:610px;border:0;border-radius:14px;box-shadow:0 30px 60px -20px rgba(0,0,0,.4),0 0 0 1px var(--line);background:var(--fond);z-index:5;opacity:0;transform:translateY(-8px) scale(.98);transform-origin:top right;pointer-events:none;transition:.25s}
+.pop.on{opacity:1;transform:none;pointer-events:auto}
+/* boutique fictive */
+.shop{padding:26px 34px 40px;font-family:Georgia,serif;color:#222}
+.shop header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #eee;padding-bottom:16px;margin-bottom:22px}
+.shop header b{font:italic 400 26px Georgia}.shop header span{font:400 13px system-ui;color:#888}
+.prods{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.prod .im{aspect-ratio:1;border-radius:6px;margin-bottom:10px}
+.prod h4{font:400 16px Georgia;margin-bottom:4px}
+.prod p{font:600 15px system-ui}
+.prod s{font:400 13px system-ui;color:#999;margin-left:4px}
+.ship{margin-top:26px;font:400 14px system-ui;color:#555;background:#faf8f3;padding:12px 16px;border-radius:8px}
+/* sections */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:90px 0 0}
+.feat div{border-top:2px solid var(--vert);padding-top:16px}
+.feat h3{font-size:22px;margin-bottom:6px}.feat p{color:#4c5a50;font-size:15.5px}
+.cases{margin-top:80px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.cases h2,.inst h2{font-size:clamp(32px,3.6vw,48px);line-height:1}
+.cases table{width:100%;border-collapse:collapse;font-size:15px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.cases td{padding:12px 14px;border-bottom:1px solid var(--line)}
+.cases td:first-child{font-family:ui-monospace,monospace;font-size:14px;color:#4c5a50}
+.inst{margin-top:80px;background:var(--vert);color:var(--creme);border-radius:26px;padding:44px;display:grid;grid-template-columns:1fr 1.2fr;gap:40px}
+.inst ol{padding-left:22px;display:grid;gap:12px;font-size:16px}.inst code{background:#ffffff1f;padding:2px 7px;border-radius:6px;font-size:14px}
+.inst .b{margin-top:22px;background:var(--creme);color:var(--vert);border:0}
+footer{padding:40px 0 50px;color:var(--mute);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media (max-width:900px){.prods{grid-template-columns:1fr 1fr}.feat,.cases,.inst{grid-template-columns:1fr}.shop{padding:18px}.pop{right:8px;width:calc(100% - 16px);max-width:340px}.inst{padding:26px}.wrap{padding:0 16px}.url span{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="lg"><img src="extension/icones/128.png" alt="">cauris</div><a class="b" href="cauris-extension.zip" download style="height:40px">Télécharger l'extension</a></nav>
+<header class="hero"><h1>Les prix du monde, <em>en francs CFA</em>.</h1><p>Cauris est une extension Chrome qui repère les prix en euros, dollars et livres sur n'importe quel site, et affiche leur équivalent en FCFA juste à côté. Plus de calculatrice ouverte pendant vos achats en ligne.</p>
+  <div class="cta"><button class="b p" id="tog">Désactiver sur la démo</button><button class="b" id="openPop">Ouvrir la fenêtre de l'extension</button></div></header>
+
+<div class="browser">
+  <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="url"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="5.5" width="8" height="5.5" rx="1.2"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/></svg><span>atelier-lumen.example/</span>collection-hiver</div><div class="ext"><button id="icon" aria-label="Ouvrir Cauris"><img src="extension/icones/32.png" alt=""><span class="badge" id="badge">0</span></button></div></div>
+  <iframe class="pop" id="pop" src="extension/popup.html" title="Fenêtre de l'extension Cauris"></iframe>
+  <div class="shop" id="shop">
+    <header><b>Atelier Lumen</b><span>Livraison internationale · Paris, Londres, New York</span></header>
+    <div class="prods">
+      <div class="prod"><div class="im" style="background:linear-gradient(135deg,#e9d9c4,#c9a882)"></div><h4>Lampe Orbe en laiton</h4><p>149,00 € <s>189,00 €</s></p></div>
+      <div class="prod"><div class="im" style="background:linear-gradient(135deg,#d6dfe3,#8fa5b0)"></div><h4>Carafe soufflée</h4><p>$64.50</p></div>
+      <div class="prod"><div class="im" style="background:linear-gradient(135deg,#ecd3cf,#c48b84)"></div><h4>Plaid en laine</h4><p>£89.00</p></div>
+      <div class="prod"><div class="im" style="background:linear-gradient(135deg,#dfe3d3,#97a57c)"></div><h4>Vase céramique</h4><p>EUR 1 249</p></div>
+    </div>
+    <p class="ship">Livraison offerte dès 200 € (ou $220). Retours gratuits sous 30 jours. Abonnement Lumen+ : 9,99 € par mois.</p>
+  </div>
+</div>
+
+<section class="feat"><div><h3>Partout, tout de suite</h3><p>Fonctionne sur toutes les pages, y compris les sites qui chargent leurs produits au défilement, grâce à un observateur des modifications du DOM.</p></div><div><h3>Des taux honnêtes</h3><p>Euro à la parité fixe de 655,957 F. Dollar et livre réglables dans la fenêtre : pas de serveur, pas de compte, aucune donnée transmise.</p></div><div><h3>Discrète</h3><p>Trois styles d'affichage, arrondi au choix, désactivation par site. Le code évite champs de saisie, blocs de code et zones éditables.</p></div></section>
+
+<section class="cases"><div><h2>Elle lit les prix comme vous.</h2><p style="color:#4c5a50;margin-top:14px">Symbole avant ou après, espaces fines, séparateurs français ou anglais : une seule expression régulière couvre les formats courants, testée sur les sites marchands européens et américains.</p></div>
+  <table class="cauris-demo"><tbody><tr><td>1 299,00 €</td><td>1 299,00 €</td></tr><tr><td>$1,299.99</td><td>$1,299.99</td></tr><tr><td>EUR 45</td><td>EUR 45</td></tr><tr><td>£12.50</td><td>£12.50</td></tr><tr><td>US$ 8</td><td>US$ 8</td></tr></tbody></table></section>
+
+<section class="inst"><div><h2>Installer en une minute</h2><p style="opacity:.8;margin-top:12px">En attendant la publication sur le Chrome Web Store, l'extension s'installe en mode développeur.</p><a class="b" href="cauris-extension.zip" download>Télécharger cauris-extension.zip</a></div>
+  <ol><li>Décompressez l'archive dans un dossier.</li><li>Ouvrez <code>chrome://extensions</code> et activez le <b>mode développeur</b>.</li><li>Cliquez sur <b>Charger l'extension non empaquetée</b> et choisissez le dossier.</li><li>Épinglez Cauris dans la barre d'outils. C'est prêt.</li></ol></section>
+<footer><span>Manifest V3 · JavaScript natif · aucune permission réseau. Boutique de démonstration fictive.</span><span>Njundiyimun Béchard · Développeur & designer</span></footer>
+</div>
+<script>
+// Sur cette page, le vrai script de l'extension est chargé tel quel (sans l'API chrome, les réglages vont dans localStorage).
+document.querySelectorAll('.cauris-demo td:first-child').forEach(td=>td.classList.add('cauris-ignorer'));
+const $=s=>document.querySelector(s);
+addEventListener('cauris:compte',e=>{$('#badge').textContent=e.detail;$('#badge').style.display=e.detail?'':'none'});
+const s=document.createElement('script');s.src='extension/cauris.js';document.body.appendChild(s);
+const pop=()=>{$('#pop').classList.toggle('on');$('#icon').classList.toggle('on')};
+$('#icon').onclick=$('#openPop').onclick=pop;
+document.addEventListener('click',e=>{if(!e.target.closest('#pop,#icon,#openPop')){$('#pop').classList.remove('on');$('#icon').classList.remove('on')}});
+function lire(){try{return JSON.parse(localStorage.getItem('cauris')||'{}')}catch(e){return{}}}
+function etat(){const a=lire().actif!==false;$('#tog').textContent=a?'Désactiver sur la démo':'Activer sur la démo'}
+$('#tog').onclick=()=>{const c=lire();c.actif=c.actif===false;try{localStorage.setItem('cauris',JSON.stringify(c))}catch(e){}dispatchEvent(new CustomEvent('cauris:reglages'));etat();$('#pop').contentWindow.location.reload()};
+addEventListener('cauris:reglages',etat);etat();
+</script>
+</body>
+</html>
