@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Cauris — prix en FCFA",
+  "name": "Cauris — prix en euros",
   "short_name": "Cauris",
-  "version": "1.0.0",
-  "description": "Affiche l'équivalent en francs CFA à côté des prix en euros, dollars et livres sur toutes les pages.",
+  "version": "2.0.0",
+  "description": "Affiche l'équivalent en euros à côté des prix en dollars, livres et francs suisses sur toutes les pages.",
   "default_locale": "fr",
   "icons": {"16": "icones/16.png", "32": "icones/32.png", "48": "icones/48.png", "128": "icones/128.png"},
   "action": {"default_popup": "popup.html", "default_icon": {"16": "icones/16.png", "32": "icones/32.png"}},

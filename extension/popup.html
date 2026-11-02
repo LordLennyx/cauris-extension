@@ -34,17 +34,17 @@ h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute
 </style>
 </head>
 <body>
-<header><svg viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="11" ry="14" fill="#f4e7c5"/><path d="M16 5c-2 4-2 18 0 22" stroke="#163a2c" stroke-width="2" fill="none"/><path d="M14 10h-2M14 14h-2.5M14 18h-2.5M14 22h-2M18 10h2M18 14h2.5M18 18h2.5M18 22h2" stroke="#163a2c" stroke-width="1.4" stroke-linecap="round"/></svg><div><b>Cauris</b><small>Les prix du monde, en FCFA</small></div><input type="checkbox" class="sw" id="actif" aria-label="Activer Cauris" checked></header>
+<header><svg viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="11" ry="14" fill="#f4e7c5"/><path d="M16 5c-2 4-2 18 0 22" stroke="#163a2c" stroke-width="2" fill="none"/><path d="M14 10h-2M14 14h-2.5M14 18h-2.5M14 22h-2M18 10h2M18 14h2.5M18 18h2.5M18 22h2" stroke="#163a2c" stroke-width="1.4" stroke-linecap="round"/></svg><div><b>Cauris</b><small>Les prix du monde, en euros</small></div><input type="checkbox" class="sw" id="actif" aria-label="Activer Cauris" checked></header>
 <main>
   <div class="cnt" id="cnt">Analyse de la page…</div>
-  <div class="conv"><div class="row"><input id="mt" inputmode="decimal" value="49,90" aria-label="Montant"><select id="dv" aria-label="Devise"><option value="eur">EUR</option><option value="usd">USD</option><option value="gbp">GBP</option></select></div><div class="res" id="res"></div></div>
+  <div class="conv"><div class="row"><input id="mt" inputmode="decimal" value="49,90" aria-label="Montant"><select id="dv" aria-label="Devise"><option value="usd">USD</option><option value="gbp">GBP</option><option value="chf">CHF</option></select></div><div class="res" id="res"></div></div>
   <div><h3>Taux appliqués</h3><div class="rates">
-    <div class="rate"><span>1 € <span class="lock">· parité fixe</span></span><b>655,957 F</b></div>
-    <div class="rate"><label for="usd">1 $ US</label><input id="usd" inputmode="decimal"></div>
-    <div class="rate"><label for="gbp">1 £</label><input id="gbp" inputmode="decimal"></div>
+    <div class="rate"><label for="usd">1 $ US (en €)</label><input id="usd" inputmode="decimal"></div>
+    <div class="rate"><label for="gbp">1 £ (en €)</label><input id="gbp" inputmode="decimal"></div>
+    <div class="rate"><label for="chf">1 CHF (en €)</label><input id="chf" inputmode="decimal"></div>
   </div></div>
   <div><h3>Affichage</h3><div class="seg" id="style"><button data-v="pastille">Pastille</button><button data-v="discret">Discret</button><button data-v="souligne">Souligné</button></div></div>
-  <div><h3>Arrondi</h3><div class="seg" id="arrondi"><button data-v="1">1 F</button><button data-v="50">50 F</button><button data-v="100">100 F</button><button data-v="1000">1 000 F</button></div></div>
+  <div><h3>Arrondi</h3><div class="seg" id="arrondi"><button data-v="0.01">Centime</button><button data-v="0.1">10 cts</button><button data-v="1">1 €</button><button data-v="5">5 €</button></div></div>
   <div class="site"><span id="host">Ce site</span><button id="excl">Désactiver ici</button></div>
 </main>
 <script src="popup.js"></script>

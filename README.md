@@ -1,6 +1,6 @@
 # Cauris
 
-**Extension Chrome (Manifest V3)** — Extension Chrome qui détecte les prix en euros, dollars et livres sur n'importe quelle page et affiche leur équivalent en francs CFA à côté, avec une fenêtre de réglages et un convertisseur. Démo en direct avec le vrai script de l'extension sur une boutique fictive.
+**Extension Chrome (Manifest V3)** — Extension Chrome qui détecte les prix en dollars, livres et francs suisses sur n'importe quelle page et affiche leur équivalent en euros à côté, avec une fenêtre de réglages et un convertisseur. Démo en direct avec le vrai script de l'extension sur une boutique fictive.
 
 **Démo en ligne : [https://lordlennyx.github.io/cauris-extension/](https://lordlennyx.github.io/cauris-extension/)**
 
@@ -11,7 +11,7 @@ Spot de présentation (30 s) : [media/spot-30s.mp4](https://lordlennyx.github.io
 ## Ce que le projet montre
 
 - Détection des prix dans le texte de la page : symbole avant ou après, séparateurs français et anglais, espaces fines
-- Euro à la parité fixe 655,957 ; dollar et livre réglables ; arrondi au franc, à 50, 100 ou 1 000 F
+- Taux du dollar, de la livre et du franc suisse réglables ; arrondi au centime, à 10 centimes, à l'euro ou à 5 €
 - Pages dynamiques prises en charge (MutationObserver), champs de saisie, code et zones éditables ignorés
 - Fenêtre de l'extension : activation, convertisseur, taux, trois styles d'affichage, désactivation par site, compteur de prix
 - Manifest V3, une seule permission (storage), aucune requête réseau, mode sombre

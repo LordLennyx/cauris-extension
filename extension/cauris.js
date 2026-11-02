@@ -1,16 +1,15 @@
-// Cauris : repère les prix en EUR / USD / GBP dans le texte de la page et ajoute leur équivalent en FCFA.
+// Cauris : repère les prix en USD / GBP / CHF dans le texte de la page et ajoute leur équivalent en euros.
 // Aucune donnée ne quitte le navigateur ; les taux sont stockés dans chrome.storage.
 (() => {
   if (window.__cauris) return; window.__cauris = true;
-  const EUR = 655.957; // parité fixe garantie par le Trésor français
-  const DEFAUT = { actif: true, usd: 605, gbp: 780, arrondi: 100, style: "pastille", exclus: [] };
+  const DEFAUT = { actif: true, usd: 0.92, gbp: 1.17, chf: 1.06, arrondi: 0.01, style: "pastille", exclus: [] };
   const stock = typeof chrome !== "undefined" && chrome.storage ? chrome.storage.sync : {
-    get: (d, cb) => { try { cb({ ...d, ...JSON.parse(localStorage.getItem("cauris") || "{}") }); } catch (e) { cb(d); } },
-    set: (o) => { try { localStorage.setItem("cauris", JSON.stringify({ ...JSON.parse(localStorage.getItem("cauris") || "{}"), ...o })); } catch (e) {} }
+    get: (d, cb) => { try { cb({ ...d, ...JSON.parse(localStorage.getItem("cauris-eur") || "{}") }); } catch (e) { cb(d); } },
+    set: (o) => { try { localStorage.setItem("cauris-eur", JSON.stringify({ ...JSON.parse(localStorage.getItem("cauris-eur") || "{}"), ...o })); } catch (e) {} }
   };
-  const SYM = { "€": "eur", "eur": "eur", "euros": "eur", "$": "usd", "usd": "usd", "us$": "usd", "£": "gbp", "gbp": "gbp" };
+  const SYM = { "$": "usd", "usd": "usd", "us$": "usd", "£": "gbp", "gbp": "gbp", "chf": "chf" };
   const N = "(\\d{1,3}(?:[ \\u00a0\\u202f.,']\\d{3})*(?:[.,]\\d{1,2})?|\\d+(?:[.,]\\d{1,2})?)";
-  const D = "(€|EUR|euros?|US\\$|\\$|USD|£|GBP)";
+  const D = "(US\\$|\\$|USD|£|GBP|CHF)";
   const RE = new RegExp(`${D}\\s?${N}|${N}\\s?${D}`, "gi");
   let cfg = DEFAUT, compte = 0;
 
@@ -20,8 +19,8 @@
     const ent = (dec ? t.slice(0, -dec[0].length) : t).replace(/[.,]/g, "");
     return parseFloat(ent + (dec ? "." + dec[1] : ""));
   }
-  const taux = (dev) => dev === "eur" ? EUR : dev === "usd" ? cfg.usd : cfg.gbp;
-  const fcfa = (v) => (Math.round(v / cfg.arrondi) * cfg.arrondi).toLocaleString("fr-FR").replace(/ /g, " ") + " F";
+  const taux = (dev) => dev === "usd" ? cfg.usd : dev === "gbp" ? cfg.gbp : cfg.chf;
+  const euros = (v) => { const d = cfg.arrondi < 1 ? 2 : 0; return (Math.round(v / cfg.arrondi) * cfg.arrondi).toLocaleString("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d }).replace(/\u202f/g, "\u00a0") + "\u00a0€"; };
 
   function traiter(noeud) {
     const txt = noeud.nodeValue; RE.lastIndex = 0;
@@ -32,8 +31,8 @@
       if (!dev || !isFinite(val) || val <= 0) continue;
       frag.append(txt.slice(i, m.index));
       const s = document.createElement("span"); s.className = "cauris-prix"; s.textContent = m[0];
-      const b = document.createElement("span"); b.className = "cauris-fcfa cauris-" + cfg.style;
-      b.textContent = "≈ " + fcfa(val * taux(dev));
+      const b = document.createElement("span"); b.className = "cauris-eur cauris-" + cfg.style;
+      b.textContent = "≈ " + euros(val * taux(dev));
       b.title = `${m[0]} × ${String(taux(dev)).replace(".", ",")} (Cauris)`;
       s.append(b); frag.append(s); i = m.index + m[0].length; compte++;
     }

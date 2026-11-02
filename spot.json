@@ -1,7 +1,7 @@
 {
  "titre": "<em>Cauris</em>, extension Chrome",
  "type": "Extension de navigateur",
- "sous_titre": "Les prix en euros, dollars et livres, convertis en FCFA sur chaque page",
+ "sous_titre": "Les prix en dollars, livres et francs suisses, convertis en euros sur chaque page",
  "couleur": "#163a2c",
  "graine": 16,
  "voix": [
@@ -11,7 +11,7 @@
   ],
   [
    8.0,
-   "chaque prix en euros, dollars ou livres affiche son équivalent en francs CFA,"
+   "chaque prix en dollars, livres ou francs suisses affiche son équivalent en euros,"
   ],
   [
    16.0,
@@ -41,7 +41,7 @@
   },
   {
    "t": "eval",
-   "js": "document.querySelector('#pop').contentDocument.querySelector('#arrondi button[data-v=\"1000\"]').click()",
+   "js": "document.querySelector('#pop').contentDocument.querySelector('#arrondi button[data-v=\"1\"]').click()",
    "pause": 1300
   },
   {

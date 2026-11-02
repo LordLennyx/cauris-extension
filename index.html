@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cauris — Extension Chrome, prix en FCFA</title>
-<meta name="description" content="Extension Chrome qui affiche l'équivalent en francs CFA à côté des prix en euros, dollars et livres, sur tous les sites. Démo en direct et code source.">
+<title>Cauris — Extension Chrome, prix en euros</title>
+<meta name="description" content="Extension Chrome qui affiche l'équivalent en euros à côté des prix en dollars, livres et francs suisses, sur tous les sites. Démo en direct et code source.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" href="extension/icones/32.png">
@@ -67,7 +67,7 @@ footer{padding:40px 0 50px;color:var(--mute);font-size:14px;display:flex;justify
 <body>
 <div class="wrap">
 <nav><div class="lg"><img src="extension/icones/128.png" alt="">cauris</div><a class="b" href="cauris-extension.zip" download style="height:40px">Télécharger l'extension</a></nav>
-<header class="hero"><h1>Les prix du monde, <em>en francs CFA</em>.</h1><p>Cauris est une extension Chrome qui repère les prix en euros, dollars et livres sur n'importe quel site, et affiche leur équivalent en FCFA juste à côté. Plus de calculatrice ouverte pendant vos achats en ligne.</p>
+<header class="hero"><h1>Les prix du monde, <em>en euros</em>.</h1><p>Cauris est une extension Chrome qui repère les prix en dollars, livres et francs suisses sur n'importe quel site, et affiche leur équivalent en euros juste à côté. Plus de calculatrice ouverte pendant vos achats en ligne.</p>
   <div class="cta"><button class="b p" id="tog">Désactiver sur la démo</button><button class="b" id="openPop">Ouvrir la fenêtre de l'extension</button></div></header>
 
 <div class="browser">
@@ -76,19 +76,19 @@ footer{padding:40px 0 50px;color:var(--mute);font-size:14px;display:flex;justify
   <div class="shop" id="shop">
     <header><b>Atelier Lumen</b><span>Livraison internationale · Paris, Londres, New York</span></header>
     <div class="prods">
-      <div class="prod"><div class="im" style="background:linear-gradient(135deg,#e9d9c4,#c9a882)"></div><h4>Lampe Orbe en laiton</h4><p>149,00 € <s>189,00 €</s></p></div>
+      <div class="prod"><div class="im" style="background:linear-gradient(135deg,#e9d9c4,#c9a882)"></div><h4>Lampe Orbe en laiton</h4><p>$189.00 <s>$239.00</s></p></div>
       <div class="prod"><div class="im" style="background:linear-gradient(135deg,#d6dfe3,#8fa5b0)"></div><h4>Carafe soufflée</h4><p>$64.50</p></div>
       <div class="prod"><div class="im" style="background:linear-gradient(135deg,#ecd3cf,#c48b84)"></div><h4>Plaid en laine</h4><p>£89.00</p></div>
-      <div class="prod"><div class="im" style="background:linear-gradient(135deg,#dfe3d3,#97a57c)"></div><h4>Vase céramique</h4><p>EUR 1 249</p></div>
+      <div class="prod"><div class="im" style="background:linear-gradient(135deg,#dfe3d3,#97a57c)"></div><h4>Vase céramique</h4><p>CHF 1 249</p></div>
     </div>
-    <p class="ship">Livraison offerte dès 200 € (ou $220). Retours gratuits sous 30 jours. Abonnement Lumen+ : 9,99 € par mois.</p>
+    <p class="ship">Free shipping over $220 (or £180). Free returns within 30 days. Lumen+ membership: $9.99 per month.</p>
   </div>
 </div>
 
-<section class="feat"><div><h3>Partout, tout de suite</h3><p>Fonctionne sur toutes les pages, y compris les sites qui chargent leurs produits au défilement, grâce à un observateur des modifications du DOM.</p></div><div><h3>Des taux honnêtes</h3><p>Euro à la parité fixe de 655,957 F. Dollar et livre réglables dans la fenêtre : pas de serveur, pas de compte, aucune donnée transmise.</p></div><div><h3>Discrète</h3><p>Trois styles d'affichage, arrondi au choix, désactivation par site. Le code évite champs de saisie, blocs de code et zones éditables.</p></div></section>
+<section class="feat"><div><h3>Partout, tout de suite</h3><p>Fonctionne sur toutes les pages, y compris les sites qui chargent leurs produits au défilement, grâce à un observateur des modifications du DOM.</p></div><div><h3>Des taux honnêtes</h3><p>Dollar, livre et franc suisse réglables dans la fenêtre : pas de serveur, pas de compte, aucune donnée transmise.</p></div><div><h3>Discrète</h3><p>Trois styles d'affichage, arrondi au choix, désactivation par site. Le code évite champs de saisie, blocs de code et zones éditables.</p></div></section>
 
 <section class="cases"><div><h2>Elle lit les prix comme vous.</h2><p style="color:#4c5a50;margin-top:14px">Symbole avant ou après, espaces fines, séparateurs français ou anglais : une seule expression régulière couvre les formats courants, testée sur les sites marchands européens et américains.</p></div>
-  <table class="cauris-demo"><tbody><tr><td>1 299,00 €</td><td>1 299,00 €</td></tr><tr><td>$1,299.99</td><td>$1,299.99</td></tr><tr><td>EUR 45</td><td>EUR 45</td></tr><tr><td>£12.50</td><td>£12.50</td></tr><tr><td>US$ 8</td><td>US$ 8</td></tr></tbody></table></section>
+  <table class="cauris-demo"><tbody><tr><td>USD 1 299,00</td><td>USD 1 299,00</td></tr><tr><td>$1,299.99</td><td>$1,299.99</td></tr><tr><td>CHF 45</td><td>CHF 45</td></tr><tr><td>£12.50</td><td>£12.50</td></tr><tr><td>US$ 8</td><td>US$ 8</td></tr></tbody></table></section>
 
 <section class="inst"><div><h2>Installer en une minute</h2><p style="opacity:.8;margin-top:12px">En attendant la publication sur le Chrome Web Store, l'extension s'installe en mode développeur.</p><a class="b" href="cauris-extension.zip" download>Télécharger cauris-extension.zip</a></div>
   <ol><li>Décompressez l'archive dans un dossier.</li><li>Ouvrez <code>chrome://extensions</code> et activez le <b>mode développeur</b>.</li><li>Cliquez sur <b>Charger l'extension non empaquetée</b> et choisissez le dossier.</li><li>Épinglez Cauris dans la barre d'outils. C'est prêt.</li></ol></section>
@@ -103,9 +103,9 @@ const s=document.createElement('script');s.src='extension/cauris.js';document.bo
 const pop=()=>{$('#pop').classList.toggle('on');$('#icon').classList.toggle('on')};
 $('#icon').onclick=$('#openPop').onclick=pop;
 document.addEventListener('click',e=>{if(!e.target.closest('#pop,#icon,#openPop')){$('#pop').classList.remove('on');$('#icon').classList.remove('on')}});
-function lire(){try{return JSON.parse(localStorage.getItem('cauris')||'{}')}catch(e){return{}}}
+function lire(){try{return JSON.parse(localStorage.getItem('cauris-eur')||'{}')}catch(e){return{}}}
 function etat(){const a=lire().actif!==false;$('#tog').textContent=a?'Désactiver sur la démo':'Activer sur la démo'}
-$('#tog').onclick=()=>{const c=lire();c.actif=c.actif===false;try{localStorage.setItem('cauris',JSON.stringify(c))}catch(e){}dispatchEvent(new CustomEvent('cauris:reglages'));etat();$('#pop').contentWindow.location.reload()};
+$('#tog').onclick=()=>{const c=lire();c.actif=c.actif===false;try{localStorage.setItem('cauris-eur',JSON.stringify(c))}catch(e){}dispatchEvent(new CustomEvent('cauris:reglages'));etat();$('#pop').contentWindow.location.reload()};
 addEventListener('cauris:reglages',etat);etat();
 </script>
 </body>
